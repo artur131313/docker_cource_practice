@@ -1,0 +1,12 @@
+dbt_course_practice:
+  outputs:
+    dev:
+      dbname: dwh_flight
+      host: 192.168.1.4
+      pass: mysecretpassword
+      port: 4001
+      schema: intermediate
+      threads: 4
+      type: postgres
+      user: postgres
+  target: dev

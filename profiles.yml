@@ -1,0 +1,12 @@
+dbt_course_practice:
+  outputs:
+    dev:
+      dbname: dwh_flight
+      host: localhost
+      pass: postgres
+      port: 5432
+      schema: intermediate
+      threads: 4
+      type: postgres
+      user: postgres
+  target: dev
