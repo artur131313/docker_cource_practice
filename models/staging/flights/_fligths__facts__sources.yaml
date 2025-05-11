@@ -1,0 +1,7 @@
+sources:
+  - name: demo_src
+    tables:
+      - name: boarding_passes
+      - name: flights
+      - name: ticket_flights
+      - name: tickets
