@@ -1,7 +1,27 @@
 sources:
   - name: demo_src
+    description: Данные из БД авиаперелетов
     tables:
       - name: boarding_passes
+        description: Посадочный талон
+        columns: 
+          - name: ticket_no
+            description: Номер билета
+          - name: flight_id
+            description: Номер рейса
+          - name: boarding_no
+            description: Номер посадосного талона
+          - name: seat_no
+            description: Номер места                                 
       - name: flights
+        freshness:
+          warn_after:
+            count: 600000
+            period: hour
+          error_after:
+            count: 10000
+            period: day
+          filter: current_timestamp::date - actual_departure::date < 30000
+        loaded_at_field: actual_departure::timestamp
       - name: ticket_flights
       - name: tickets
