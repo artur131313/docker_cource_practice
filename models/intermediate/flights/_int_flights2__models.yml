@@ -1,0 +1,40 @@
+models:
+  - name: fct_ticket_flight
+    description: Факты посадочные талоны
+    docs:
+      show: true
+      node_color: green
+    config:
+      contract: {enforced: true}
+    meta:
+      owner: "artur_l@list.ru"
+      contact_tg: artur_l
+      status: in_dev
+
+    
+    columns:
+      - name: ticket_no
+        data_type: bpchar(13)
+        constraints:
+          - type: not_null
+      - name: flight_id
+        data_type: int4
+      - name: fare_conditions
+        data_type: varchar(10)      
+        constraints:
+        - type: not_null         
+      - name: amount
+        data_type: numeric(10,2)  
+        constraints:
+        - type: not_null        
+        - type: check
+          expression: "amount > 0"
+      - name: boarding_pass_exists
+        data_type: int4
+      - name: boarding_no
+        data_type: int4  
+      - name: seat_no
+        data_type: varchar(4)
+      - name: load_date
+        data_type: TIMESTAMPTZ           
+          

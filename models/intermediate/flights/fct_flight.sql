@@ -13,6 +13,7 @@ select
     status,
     aircraft_code,
     actual_departure,
-    actual_arrival
+    actual_arrival,
+    CURRENT_DATE::TIMESTAMPTZ AS load_date
 from 
     {{ ref('stg_flights__flights') }}
