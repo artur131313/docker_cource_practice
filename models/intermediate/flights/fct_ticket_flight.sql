@@ -8,7 +8,10 @@ select
     fb.flight_id,
     fare_conditions,
     amount,
-    1 as boarding_pass_exists,
+    CASE 
+    WHEN fb.ticket_no IS NOT NULL THEN 1 
+        ELSE 0 
+    END AS boarding_pass_exists,
     boarding_no,
     seat_no,
     CURRENT_DATE::TIMESTAMPTZ AS load_date    
