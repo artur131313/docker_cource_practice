@@ -1,0 +1,6 @@
+seeds:
+  - name: id_empl
+    description: Справочник пассажиров
+    config:
+      column_types:
+        passenger_id: varchar(20)

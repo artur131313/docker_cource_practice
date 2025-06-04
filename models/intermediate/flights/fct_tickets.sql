@@ -3,7 +3,7 @@
     materialized = 'table'
     )
 }}
-select
+select 
     ticket_no,
     book_ref,
     passenger_id,
@@ -11,3 +11,4 @@ select
     contact_data
 from
     {{ ref('stg_flights__tickets') }}
+where passenger_id not in (select passenger_id from {{ ref('id_empl') }})
