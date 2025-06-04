@@ -1,6 +1,10 @@
 {{
   config(
-    materialized = 'table'
+    materialized = 'incremental',
+      incremental_strategy = 'merge',
+      unique_key = ['flight_id'],
+      tags = ['flights'],
+      merge_update_columns = ['status', 'actual_departure', 'actual_arrival']
     )
 }}
 select
@@ -15,3 +19,6 @@ select
     actual_departure,
     actual_arrival
 from {{ source('demo_src', 'flights') }}
+    {% if is_incremental() %}
+    where (CURRENT_DATE - scheduled_departure) > interval '100 day'
+    {% endif %}
